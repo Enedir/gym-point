@@ -2,20 +2,20 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('registrations', {
       id: {
-        type: Sequelize.UUID,
+        type: Sequelize.BIGINT,
         primaryKey: true,
         allowNull: false,
-        defaultValue: Sequelize.literal('uuid_generate_v4()'),
+        autoIncrement: true,
       },
       plan_id: {
-        type: Sequelize.UUID,
+        type: Sequelize.BIGINT,
         references: { model: 'plans', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
       },
       student_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         references: { model: 'students', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
