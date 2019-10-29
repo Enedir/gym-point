@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import { parseISO, addMonths } from 'date-fns';
 
 class Plan extends Model {
   static init(sequelize) {
@@ -14,6 +15,14 @@ class Plan extends Model {
     );
 
     return this;
+  }
+
+  calculateEndDate(start_date) {
+    return addMonths(parseISO(start_date), this.duration);
+  }
+
+  calculatePrice() {
+    return this.price * this.duration;
   }
 }
 
